@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
+import css from "./Input.module.css";
 
 const Input = ({ type, name, pattern, title, value, onChange }) => {
     return (
         <input
+            className={css.input}
             type={type}
             name={name}
             pattern={pattern}

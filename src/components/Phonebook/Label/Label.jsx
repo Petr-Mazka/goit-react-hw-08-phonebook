@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import css from "./Label.module.css";
 
 const Label = ({ text, children }) => {
     return (
-        <label>
+        <label className={css.label}>
         {text}
         {children}
         </label>

@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
+import css from "./Filter.module.css";
+import Input from "../Input/Input";
 
-const Filter = ({ onChange, value, name }) => {
+const Filter = ({ onChange, value, name, type, title, pattern }) => {
     return (
         <>
-        <h2>Find contacts by name</h2>
-            <input type="text" name={name} value={value} onChange={onChange} />
+        <h2 className={css.filterTitle}>Find contacts by name</h2>
+            <Input type={type} title={title} name={name} value={value} pattern={pattern} onChange={onChange}/>
         </>
     );
 }

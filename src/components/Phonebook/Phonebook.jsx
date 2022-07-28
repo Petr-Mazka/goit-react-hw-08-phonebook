@@ -3,6 +3,7 @@ import ContactsList from "./ContactsList/ContactsList";
 import Filter from "./Filter/Filter";
 import Form from "./Form/Form";
 import { nanoid } from 'nanoid/non-secure'
+import css from './Phonebook.module.css'
 
 class Phonebook extends Component {
 
@@ -49,10 +50,10 @@ class Phonebook extends Component {
             return contact.name.toLowerCase().includes(normalizedFilter);
         })
     return (
-        <div>
+        <div className={css.container}>
             <Form onSubmit={this.formSubmitHandler} />
             <ContactsList title={"Contacts"} contacts={visibleContacts} onDeleteContact={this.deleteContact}>
-                <Filter onChange={this.changeFilter} value={this.state.filter} name={"filter"} />
+                <Filter onChange={this.changeFilter} type={"text"} value={this.state.filter} name={"filter"} title={""} pattern={""} />
             </ContactsList>
         </div>
     );
