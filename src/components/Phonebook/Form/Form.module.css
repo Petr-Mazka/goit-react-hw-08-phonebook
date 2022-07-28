@@ -26,8 +26,7 @@
     box-shadow: #1f1f1f 1px 1px 5px;
 }
 
-.formButton:hover,
-.formButton:focus{
+.formButton:hover{
     box-shadow: #1f1f1f 3px 3px 8px;
     cursor: pointer;
 }
