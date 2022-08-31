@@ -1,17 +1,38 @@
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteContact, getContacts, getFilter } from '../../../redux/slicer';
+import Filter from "../Filter/Filter";
 import css from "./ContactsList.module.css";
 
-const ContactsList = ({ contacts, title, onDeleteContact, children }) => {
+const ContactsList = () => {
+
+    const dispatch = useDispatch();
+    const contacts = useSelector(getContacts);
+    const filter = useSelector(getFilter);
+
+    const removeContact = (contactId) => {
+        dispatch(deleteContact(contactId));
+    }
+
+    const filtredContact = () => {
+    const normalizedFilter = filter.toLowerCase();
+        return contacts.filter(contact =>
+            contact.name.toLowerCase().includes(normalizedFilter)
+        );
+    };
+
+    const contactsList = filtredContact();
+    
     return (
         <>
-        <h2 className={css.title}>{title}</h2>
-        {children}
+        <h2 className={css.title}>Contacts</h2>
+        <Filter/>
         <ul className={css.list}>
-        {contacts.map(contact => (
+        {contactsList.map(contact => (
             <li className={css.item} key={contact.id}>
             <span>{contact.name}:</span>
             <span>{contact.number}</span>
-            <button type="button" className={css.deleteButton} onClick={() => onDeleteContact(contact.id)}>Delete</button>
+            <button type="button" className={css.deleteButton} onClick={() => removeContact(contact.id)}>Delete</button>
             </li>
         ))}
         </ul>
@@ -20,14 +41,7 @@ const ContactsList = ({ contacts, title, onDeleteContact, children }) => {
 }
 
 ContactsList.propTypes = {
-    contacts: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            number: PropTypes.string.isRequired   
-        }).isRequired
-    ).isRequired,
-    title: PropTypes.string.isRequired,
-    children: PropTypes.object.isRequired
+    title: PropTypes.string,
 }
 
 export default ContactsList;

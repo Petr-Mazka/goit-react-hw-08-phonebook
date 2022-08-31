@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import css from "./Input.module.css";
 
-const Input = ({ type, name, pattern, title, value, onChange }) => {
+const Input = ({ type, name, pattern, title, value, id, onChange }) => {
     return (
         <input
             className={css.input}
@@ -9,6 +9,7 @@ const Input = ({ type, name, pattern, title, value, onChange }) => {
             name={name}
             pattern={pattern}
             title={title}
+            id={id}
             required
             value={value}
             onChange={onChange}
@@ -22,7 +23,7 @@ Input.propTypes = {
     pattern: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
 }
 
 export default Input;
